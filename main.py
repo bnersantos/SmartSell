@@ -13,7 +13,7 @@ from models import *
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'
 jwt = JWTManager(app)
-spec = FlaskPydanticSpec('flask', title='API - SMARTSELL', version='1.0.0')
+spec = FlaskPydanticSpec('flask', title='API-SMARTSELL', version='1.0.0')
 
 #http://10.135.235.27:5002
 @app.route('/login', methods=['POST'])
@@ -240,7 +240,7 @@ def cadastro_ingrediente():
         if ja_existe:
             return jsonify({"msg": "Ingrediente com esse nome já existe."}), 400
 
-        # Validação do status
+
         if status is True or status is False:
             status_final = status
         else:
@@ -252,7 +252,7 @@ def cadastro_ingrediente():
             else:
                 return jsonify({"msg": "Valor de 'status' inválido. Use true/false ou 1/2."}), 400
 
-        # Criação do novo produto
+
         novo_ingrediente = Ingrediente(
             nome=nome.strip(),
             unidade=unidade.strip(),
@@ -263,7 +263,7 @@ def cadastro_ingrediente():
 
         return jsonify({
             "msg": "Ingrediente cadastrado com sucesso!",
-            "produto": novo_ingrediente.serialize()
+            "ingrediente": novo_ingrediente.serialize()
         }), 201
 
     except Exception as e:
